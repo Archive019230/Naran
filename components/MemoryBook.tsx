@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Gallery from "@/components/Gallery";
 import BucketList from "@/components/BucketList";
@@ -14,6 +15,7 @@ export default function MemoryBook() {
 
   return (
     <div className="flex min-h-full flex-1 flex-col">
+      <Navbar />
       <Hero />
 
       <Gallery memories={[...initialMemories, ...uploaded]} />
@@ -24,9 +26,9 @@ export default function MemoryBook() {
 
       <div className="mx-auto h-px w-24 bg-accent/40" />
 
-      <section className="px-4 pb-16 sm:px-6 sm:pb-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <UploadSection onAdd={(m) => setUploaded((prev) => [...prev, m])} />
+      <section id="add" className="scroll-mt-24 px-4 pb-16 sm:px-6 sm:pb-20">
+        <UploadSection onAdd={(m) => setUploaded((prev) => [...prev, m])} />
+        <div className="mt-9">
           <FunButtons />
         </div>
       </section>

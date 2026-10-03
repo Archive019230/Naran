@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Nunito, Fredoka, Caveat } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/components/Toast";
+import { THEME_INIT_SCRIPT } from "@/lib/theme";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -29,7 +30,6 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#fffafc",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -38,7 +38,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${nunito.variable} ${fredoka.variable} ${caveat.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans" data-mood="0">
+      <body className="min-h-full flex flex-col font-sans">
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <ToastProvider>{children}</ToastProvider>
       </body>
     </html>

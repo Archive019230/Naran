@@ -66,28 +66,31 @@ export default function BucketList() {
   const completed = bucketItems.filter((item) => done[item.id]).length;
 
   return (
-    <section className="relative overflow-hidden px-4 py-14 sm:px-6 sm:py-20">
+    <section
+      id="next-time"
+      className="relative scroll-mt-24 overflow-hidden px-4 py-14 sm:px-6 sm:py-20"
+    >
       <div
         aria-hidden
         className="animate-blob pointer-events-none absolute top-10 -left-24 h-56 w-56 rounded-full bg-blob-2 opacity-60 blur-3xl sm:h-72 sm:w-72"
         style={{ animationDelay: "-4s" }}
       />
       <div className="relative mx-auto max-w-xl text-center">
-        <h2 className="font-display text-3xl font-semibold text-neutral-800 sm:text-4xl">
+        <h2 className="font-display text-3xl font-semibold text-ink-strong sm:text-4xl">
           🕊️ Next Time We Meet...
         </h2>
-        <p className="font-hand mt-1 text-xl text-neutral-500 sm:text-2xl">
+        <p className="font-hand mt-1 text-xl text-ink-muted sm:text-2xl">
           tick them off together, one by one
         </p>
 
         <div className="mt-6">
-          <div className="mb-2 flex items-center justify-between text-xs font-extrabold tracking-wide text-neutral-500 uppercase">
+          <div className="mb-2 flex items-center justify-between text-xs font-extrabold tracking-wide text-ink-muted uppercase">
             <span>progress</span>
             <span>
               {completed}/{bucketItems.length}
             </span>
           </div>
-          <div className="h-2.5 w-full overflow-hidden rounded-full bg-white/80 shadow-inner">
+          <div className="h-2.5 w-full overflow-hidden rounded-full bg-surface/80 shadow-inner">
             <motion.div
               className="h-full rounded-full bg-accent"
               initial={{ width: 0 }}
@@ -117,14 +120,14 @@ export default function BucketList() {
                   className={`flex w-full cursor-pointer items-center gap-3 rounded-2xl border px-4 py-3.5 text-left shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md sm:px-5 ${
                     isDone
                       ? "border-accent/40 bg-accent-soft"
-                      : "border-white/80 bg-white/80"
+                      : "border-line bg-surface/80"
                   }`}
                 >
                   <span
                     className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border-2 text-xs font-black transition-all ${
                       isDone
-                        ? "border-accent bg-accent text-white"
-                        : "border-neutral-300 bg-white text-transparent"
+                        ? "border-accent bg-accent text-surface"
+                        : "border-line bg-surface text-transparent"
                     }`}
                   >
                     ✓
@@ -132,8 +135,8 @@ export default function BucketList() {
                   <span
                     className={`text-base font-bold transition-all sm:text-lg ${
                       isDone
-                        ? "text-neutral-400 line-through"
-                        : "text-neutral-700"
+                        ? "text-ink-muted line-through"
+                        : "text-ink-strong"
                     }`}
                   >
                     {item.label}

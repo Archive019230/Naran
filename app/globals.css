@@ -6,6 +6,11 @@
   --font-hand: var(--font-caveat), "Comic Sans MS", cursive;
 
   --color-mood: var(--mood-bg);
+  --color-surface: var(--mood-surface);
+  --color-ink: var(--mood-ink);
+  --color-ink-strong: var(--mood-ink-strong);
+  --color-ink-muted: var(--mood-ink-muted);
+  --color-line: var(--mood-line);
   --color-blob-1: var(--mood-blob-1);
   --color-blob-2: var(--mood-blob-2);
   --color-accent: var(--mood-accent);
@@ -18,22 +23,39 @@
   --mood-blob-2: #c3f0ff;
   --mood-accent: #ff87bd;
   --mood-accent-soft: #ffe4f2;
+  --mood-surface: #ffffff;
+  --mood-ink: #43404b;
+  --mood-ink-strong: #2c2933;
+  --mood-ink-muted: #6f6b7a;
+  --mood-line: #f3e6ee;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
-  background-color: var(--mood-bg);
-  color: #43404b;
-  transition: background-color 0.9s ease;
-  overflow-x: hidden;
-}
+  body {
+    background-color: var(--mood-bg);
+    color: var(--mood-ink);
+    overflow-x: clip;
+    transition:
+      background-color 0.9s ease,
+      color 0.5s ease;
+  }
 
-::selection {
-  background: var(--mood-accent);
-  color: #fff;
+  *,
+  ::before,
+  ::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 350ms;
+    transition-timing-function: ease;
+  }
+
+  ::selection {
+    background: var(--mood-accent);
+    color: var(--mood-surface);
+  }
 }
 
 @keyframes floaty {
@@ -68,29 +90,12 @@ body {
   }
 }
 
-@keyframes pop-in {
-  0% {
-    transform: scale(0.6);
-    opacity: 0;
-  }
-  70% {
-    transform: scale(1.08);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 .animate-floaty {
   animation: floaty 5s ease-in-out infinite;
 }
 .animate-blob {
   animation: blob-drift 22s ease-in-out infinite;
   will-change: transform;
-}
-.animate-pop {
-  animation: pop-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .text-shimmer {
@@ -109,22 +114,9 @@ body {
 }
 
 .glass {
-  background: color-mix(in srgb, #ffffff 78%, transparent);
+  background: color-mix(in srgb, var(--mood-surface) 78%, transparent);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-}
-
-.tape::before {
-  content: "";
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  width: 90px;
-  height: 26px;
-  transform: translateX(-50%) rotate(-3deg);
-  background: color-mix(in srgb, var(--mood-accent) 35%, transparent);
-  border-radius: 3px;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
 }
 
 @media (prefers-reduced-motion: reduce) {

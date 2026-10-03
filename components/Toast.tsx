@@ -44,12 +44,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -12, scale: 0.9 }}
               transition={{ type: "spring", stiffness: 380, damping: 26 }}
-              className="glass pointer-events-auto flex max-w-[92vw] items-center gap-3 rounded-2xl border border-white/70 px-4 py-3 shadow-lg shadow-black/10 sm:max-w-md sm:px-5"
+              className="glass pointer-events-auto flex max-w-[92vw] items-center gap-3 rounded-2xl border border-line px-4 py-3 shadow-lg shadow-black/10 sm:max-w-md sm:px-5"
             >
               <span className="text-xl sm:text-2xl">{t.emoji}</span>
-              <p className="text-sm font-bold text-neutral-700 sm:text-base">
-                {t.text}
-              </p>
+              <p className="text-sm font-bold text-ink sm:text-base">{t.text}</p>
             </motion.div>
           ))}
         </AnimatePresence>
